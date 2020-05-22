@@ -6,14 +6,14 @@ enum ENV {
 }
 
 class Application {
-  /// 通过Application设计环境变量
+
   static ENV env = ENV.DEV;
 
   static Router router;
   static SpUtil sharePeference;
 
-  static void init() async {
-    router = Router();
+  static void init({Router router}) async {
+    router = router ?? Router();
     sharePeference = await SpUtil.instance;
   }
 
