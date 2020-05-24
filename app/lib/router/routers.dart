@@ -1,4 +1,4 @@
-import 'package:appbase/appbase.dart';
+import 'package:common/common.dart';
 
 import 'router_handler.dart';
 

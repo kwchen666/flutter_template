@@ -1,4 +1,4 @@
-library appbase;
+library common;
 
 export 'package:provider/provider.dart';
 export 'package:fluro/fluro.dart';

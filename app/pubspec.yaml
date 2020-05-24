@@ -20,8 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  appbase:
-    path: ../app_base
+  common:
+    path: ../common
 
 dev_dependencies:
   flutter_test:
