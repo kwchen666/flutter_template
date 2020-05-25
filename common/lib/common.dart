@@ -13,3 +13,6 @@ export 'src/utils/regex_util.dart';
 export 'src/utils/sp_util.dart';
 export 'src/utils/text_util.dart';
 export 'src/utils/timer_util.dart';
+export 'src/router/router_provider.dart';
+export 'src/app/app.dart';
+

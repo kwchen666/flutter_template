@@ -1,14 +1,12 @@
-import 'dart:math';
-
 import 'package:common/common.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'application.dart';
-import 'page/next_page.dart';
+import 'router/app_routers.dart';
 
 void main() {
-  Application.init();
+  // 初始化
+  App.init(routes: [AppRoutes()]);
 
   runApp(
     MultiProvider(
@@ -21,6 +19,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,12 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('${context.watch<Counter>().count}',
-                style: Theme.of(context).textTheme.headline5),
+                style: Theme.of(context).textTheme.headline2),
             FlatButton(
               child: Text("下一个页面"),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NextPage()));
+                App.navigator.push(context, AppRoutes.test);
               },
             ),
           ],
