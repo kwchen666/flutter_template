@@ -5,7 +5,6 @@ class LogUtil {
   static int maxLen = 600;
   static String tag = "log";
 
-
   static void i(Object object, {String tag}) {
     _logout(tag, object);
   }

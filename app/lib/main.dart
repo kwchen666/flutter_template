@@ -8,6 +8,8 @@ void main() {
   // 初始化
   App.init(routes: [AppRoutes()]);
 
+  Provider.debugCheckInvalidValueType = null;
+
   runApp(
     MultiProvider(
       providers: [
@@ -19,14 +21,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          brightness: Brightness.light,
+          primarySwatch: Colors.orange,
+          primaryColor: Colors.orange,
+          buttonTheme: ButtonThemeData(buttonColor: Colors.orange)),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -42,7 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _incrementCounter() {
     context.read<Counter>().increment();
   }
@@ -59,12 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text('${context.watch<Counter>().count}',
                 style: Theme.of(context).textTheme.headline2),
-            FlatButton(
-              child: Text("下一个页面"),
-              onPressed: () {
-                App.navigator.push(context, AppRoutes.test);
-              },
-            ),
+            routerButton("测试1", AppRoutes.test),
+            routerButton("测试2", AppRoutes.test2),
           ],
         ),
       ),
@@ -74,6 +72,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  Widget routerButton(String label, String routeName) {
+      return FlatButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(label),
+        onPressed: () {
+          App.navigator.push(context, routeName);
+        },
+      );
   }
 }
 
@@ -93,4 +103,3 @@ class Counter with ChangeNotifier, DiagnosticableTreeMixin {
     properties.add(IntProperty('count', count));
   }
 }
-

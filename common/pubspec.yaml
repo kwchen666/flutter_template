@@ -18,6 +18,10 @@ dependencies:
   shared_preferences: ^0.5.7+3
   # 路由管理
   fluro: "^1.6.3"
+  # toast
+  fluttertoast: ^4.0.1
+  # 网络请求
+  dio: ^3.0.9
 
 dev_dependencies:
   flutter_test:
