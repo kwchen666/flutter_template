@@ -13,6 +13,11 @@ class ApiError {
   String msg;
 
   ApiError(this.type, this.code, this.msg);
+
+  @override
+  String toString() {
+    return 'ApiError: code=$code, msg=$msg';
+  }
 }
 
 /// 错误类型

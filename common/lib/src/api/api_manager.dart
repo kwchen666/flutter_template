@@ -35,33 +35,27 @@ class ApiManager {
   }
 
   /// get 请求
-  Future httpGet(String url,
-      {Map<String, dynamic> params,
-      Function(ApiResponse) success,
-      Function(ApiError) error}) async {
-    await request("get", url, params: params, success: success, error: error);
+  Future<ApiResponse> httpGet(String url,
+      {Map<String, dynamic> params}) async {
+    return await request("get", url, params: params);
   }
 
   /// post请求
-  Future httpPost(String url,
-      {Map<String, dynamic> params,
-      Function(ApiResponse) success,
-      Function(ApiError) error}) async {
-    await request("post", url, params: params, success: success, error: error);
+  Future<ApiResponse> httpPost(String url,
+      {Map<String, dynamic> params}) async {
+    return await request("post", url, params: params);
   }
 
   /// 请求
-  Future request(String method, String url,
-      {Map<String, dynamic> params,
-      Function(ApiResponse) success,
-      Function(ApiError) error}) async {
+  Future<ApiResponse> request(String method, String url,
+      {Map<String, dynamic> params}) async {
     try {
       Response response = await dio.request(url,
           queryParameters: params, options: Options(method: method));
       if (_isSuccess(response)) {
-        success(ApiResponse(response.data, true, response.statusCode));
+        return ApiResponse(response.data, true, response.statusCode);
       } else {
-        error(ApiError(ApiErrorType.api_error, response.statusCode,
+        return ApiResponse(null, false, response.statusCode, error: ApiError(ApiErrorType.api_error, response.statusCode,
             response.statusMessage));
       }
     } on DioError catch (e) {
@@ -85,7 +79,7 @@ class ApiManager {
         default:
           break;
       }
-      error(apiError);
+      return ApiResponse(null, false, -1, error: apiError);
     }
   }
 

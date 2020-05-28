@@ -1,3 +1,5 @@
+import 'api_error.dart';
+
 /// @Description
 /// @outhor chenkw
 /// @create 2020-05-26 11:48
@@ -14,7 +16,9 @@ class ApiResponse {
 
   var headers;
 
-  ApiResponse(this.data, this.isSuccess, this.code, {this.headers});
+  ApiError error;
+
+  ApiResponse(this.data, this.isSuccess, this.code, {this.headers, this.error});
 
 }
 
